@@ -1,0 +1,169 @@
+Name: Blue Ocean Movies
+Official API Documentation: https://developers.themoviedb.org/3
+Contribution Bible: https://www.themoviedb.org/bible
+API: The Movie Database API 3
+API key: 07095eeae7a32cd735b4ed3af97afb77
+Laravel PHP Framework
+User/Register
+Database: MySQL
+Description: A movie app to get information about movies, tv shows and actors/actresses.  Catalog movies into a database.
+- create a list of top rated movies
+- create a list of upcoming movies
+- create a list of popular movies
+- create a list of popular TV shows
+- create a list of top rated TV shows
+- create a list of popular people
+- search movies
+- search people
+- search TV shows
+
+colormind.io: http://colormind.io/bootstrap/
+
+Search by:
+-Genre
+-release date
+-title
+-
+
+Fonts:
+Creepster
+Link: <link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">
+font-family: 'Creepster', cursive;
+Arvo
+Link: <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+font-family: 'Arvo', serif;
+Rokkitt
+Link: <link href="https://fonts.googleapis.com/css?family=Rokkitt" rel="stylesheet">
+font-family: 'Rokkitt', serif;
+Raleway
+Link: <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+font-family: 'Raleway', sans-serif;
+
+Color Theme: Blue and Refreshing
+#25274D
+#464866
+#AAABB8
+#2E9CCA
+#29648A
+
+
+Have you ever watched a movie and you can't remember who the lead actor/actress is?
+Have you ever heard about a movie and wanted to know more about the movie?
+Have you ever wanted to see a movie trailer?
+Have you ever wanted to see what movies are coming to theatres?
+Have you ever wanted to know what the top rated movies are?
+
+Have you ever wanted to Catalog your DVD/Blu Ray collection?
+
+Database Tables:
+list
+-----
+- id
+- name
+
+list_detail
+- id
+- list_id
+- genre_details_id
+- movie_id
+
+genre_detail
+- id
+- name
+- list_details_id
+
+movie
+-----
+- id
+- movie_id
+- imdb_id
+- homepage
+- genre_ids
+- title
+- overview
+- runtime
+
+region
+- code
+- name
+
+genre
+-----
+- id
+- name
+
+television
+- id
+- name
+- number_of_seasons
+- number_of_episodes
+- homepage
+- overview
+
+
+POSTER PATH
+Use this
+https://image.tmdb.org/t/p/original/[poster_path] 
+https://image.tmdb.org/t/p/original/rPyWt7IPREDWnE1U8V9iMFzeh0p.jpg
+
+How To Train Your Dragon
+movie_id=166428
+
+Image Sizes:
+base_url: http://image.tmdb.org/t/p/
+secure_base_url: https://image.tmdb.org/t/p/
+
+backdrop_sizes:
+  w300
+  w780
+  w1280
+  original
+
+logo_sizes:
+  w45
+  w92
+  w154
+  w185
+  w300
+  w500
+  original
+
+poster_sizes:
+  w92
+  w154
+  w185
+  w342
+  w500
+  w780
+  original
+
+profile_sizes:
+  w45
+  w185
+  h632
+  original
+
+still_sizes:
+  w92
+  w185
+  w300
+  original
+
+YouTube
+By placing the Source KEY dzxFdtWmjto on the Youtube search field you can find the trailer.
+
+Best still is to use the default URL plus Source KEY.
+default URL = https://www.youtube.com/watch?v=
+default URL + Source KEY https://www.youtube.com/watch?v=dzxFdtWmjto
+
+<div id="app" v-cloak>
+  <h2>My Videos</h2>
+  <div v-for="video in videos">
+    <iframe id="ytplayer" type="text/html" width="640" height="360"
+    :src="'https://www.youtube.com/embed/'+video.videoId+'?autoplay=0&origin=http://example.com'"
+  frameborder="0"></iframe>
+    <hr/>
+  </div>
+</div>
+
+

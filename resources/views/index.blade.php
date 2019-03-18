@@ -39,10 +39,7 @@
       <div class="content">
           <div class="row">
               @yield('login')
-          
-            <!-- @include('genre.genre')
-            @include('country.country')
-            @include('language.language') -->
+              @yield('register')
           </div>  
       </div> 
     </div>

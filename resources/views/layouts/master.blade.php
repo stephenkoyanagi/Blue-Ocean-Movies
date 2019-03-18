@@ -38,12 +38,7 @@
       </div>
       <div class="content">
           <div class="row">
-              @yield('login')
-              @yield('register')
           
-            <!-- @include('genre.genre')
-            @include('country.country')
-            @include('language.language') -->
           </div>  
       </div> 
     </div>
