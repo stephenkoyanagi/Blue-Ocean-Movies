@@ -4,7 +4,7 @@
 			<form @submit.prevent="getNowPlaying">
 				<div class="form-group ml-2 mt-4 pt-2">
 					<country-dropdown-component @selectedCountry="selectCountry"></country-dropdown-component>
-					<genre-dropdown-component @selectedGenre="selectGenre"></genre-dropdown-component>
+					<language-dropdown-component @selectedLanguage="selectLanguage"></language-dropdown-component>
 					<button type="button" class="btn btn-warning" @click="getNowPlaying()">Get Now Playing</button>
 				</div>
 			</form>
@@ -68,7 +68,7 @@
 		data() {
 			return {
 				countryCode: "",
-				genreCode: "",
+				languageCode: "",
 				img_src: "https://image.tmdb.org/t/p/w154/",
 				nowPlayingResults: [],
 				totalPageCount: 0,
@@ -91,7 +91,7 @@
 				var settings = {
 					"async": true,
 					"crossDomain": true,
-					"url": "https://api.themoviedb.org/3/movie/now_playing?api_key=" + this.api_key + "&language=en-US&page=1&region=" + this.countryCode,
+					"url": "https://api.themoviedb.org/3/movie/now_playing?api_key=" + this.api_key + "&language=" + this.languageCode + "-" + this.countryCode + "&page=1&region=" + this.countryCode,
 					"method": "GET",
 					"headers": {},
 					"data": "{}"
@@ -109,8 +109,8 @@
 			selectCountry(code) {
 				this.countryCode = code;
 			},
-			selectGenre(code) {
-				this.genreCode = code;
+			selectLanguage(code) {
+				this.languageCode = code;
 			}
 			
 		}

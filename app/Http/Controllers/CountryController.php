@@ -34,12 +34,17 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        $country = new Country();
-        $country->code = $request->input('countryCode');
-        $country->name = $request->input('countryName');
-                
-        if ($country->save()) {
-            return redirect()->home();
+        $count = Country::where('code', '=', $request->input('countryCode'))->count();
+        if($count == 0) {
+            $country = new Country();
+            $country->code = $request->input('countryCode');
+            $country->name = $request->input('countryName');
+                    
+            if($country->save()) {
+                return redirect()->back()->with('alert', $request->input('countryName') . ' Added Successfully!');
+            };
+        } else {
+            return redirect()->back()->with('alert', $request->input('countryName') . ' Already Exists!');
         }
 
     }

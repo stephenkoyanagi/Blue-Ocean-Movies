@@ -10,7 +10,7 @@
 		data() {
 			return {
 				countryResults: [],
-				code: "",
+				code: "US",
 				name: "",
 			}
 		},

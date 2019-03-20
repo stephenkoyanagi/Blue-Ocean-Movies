@@ -1861,7 +1861,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       countryResults: [],
-      code: "",
+      code: "US",
       name: ""
     };
   },
@@ -2126,7 +2126,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       languageResults: [],
-      code: "",
+      code: "en",
       name: ""
     };
   },
@@ -2342,7 +2342,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       countryCode: "",
-      genreCode: "",
+      languageCode: "",
       img_src: "https://image.tmdb.org/t/p/w154/",
       nowPlayingResults: [],
       totalPageCount: 0,
@@ -2365,7 +2365,7 @@ __webpack_require__.r(__webpack_exports__);
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://api.themoviedb.org/3/movie/now_playing?api_key=" + this.api_key + "&language=en-US&page=1&region=" + this.countryCode,
+        "url": "https://api.themoviedb.org/3/movie/now_playing?api_key=" + this.api_key + "&language=" + this.languageCode + "-" + this.countryCode + "&page=1&region=" + this.countryCode,
         "method": "GET",
         "headers": {},
         "data": "{}"
@@ -2383,8 +2383,8 @@ __webpack_require__.r(__webpack_exports__);
     selectCountry: function selectCountry(code) {
       this.countryCode = code;
     },
-    selectGenre: function selectGenre(code) {
-      this.genreCode = code;
+    selectLanguage: function selectLanguage(code) {
+      this.languageCode = code;
     }
   }
 });
@@ -2807,11 +2807,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UpcomingComponent",
   data: function data() {
     return {
       countryCode: "",
+      languageCode: "",
       upcomingResults: [],
       totalPageCount: 0,
       totalResults: 0,
@@ -2836,7 +2838,7 @@ __webpack_require__.r(__webpack_exports__);
         "async": true,
         "crossDomain": true,
         "dataType": "json",
-        "url": "https://api.themoviedb.org/3/movie/upcoming?api_key=" + this.api_key + "&language=en-US&region=" + this.countryCode,
+        "url": "https://api.themoviedb.org/3/movie/upcoming?api_key=" + this.api_key + "&language=" + this.languageCode + "-" + this.countryCode + "&region=" + this.countryCode,
         "method": "GET",
         "headers": {},
         "data": "{}"
@@ -2854,6 +2856,12 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return this.img_src + img;
+    },
+    selectCountry: function selectCountry(code) {
+      this.countryCode = code;
+    },
+    selectLanguage: function selectLanguage(code) {
+      this.languageCode = code;
     }
   }
 });
@@ -38031,7 +38039,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h4", { staticClass: "card-title" }, [_vm._v("Country")])
+      _c("h4", { staticClass: "card-title underline" }, [_vm._v("Country")])
     ])
   },
   function() {
@@ -38661,8 +38669,8 @@ var render = function() {
                 on: { selectedCountry: _vm.selectCountry }
               }),
               _vm._v(" "),
-              _c("genre-dropdown-component", {
-                on: { selectedGenre: _vm.selectGenre }
+              _c("language-dropdown-component", {
+                on: { selectedLanguage: _vm.selectLanguage }
               }),
               _vm._v(" "),
               _c(
@@ -39311,42 +39319,34 @@ var render = function() {
           }
         },
         [
-          _c("div", { staticClass: "form-group ml-2 mt-4 pt-2" }, [
-            _c("input", {
-              directives: [
+          _c(
+            "div",
+            { staticClass: "form-group ml-2 mt-4 pt-2" },
+            [
+              _c("country-dropdown-component", {
+                on: { selectedCountry: _vm.selectCountry }
+              }),
+              _vm._v(" "),
+              _c("language-dropdown-component", {
+                on: { selectedLanguage: _vm.selectLanguage }
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
                 {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.countryCode,
-                  expression: "countryCode"
-                }
-              ],
-              attrs: { type: "text", name: "region" },
-              domProps: { value: _vm.countryCode },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                  staticClass: "btn btn-warning",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.getUpcoming()
+                    }
                   }
-                  _vm.countryCode = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-warning",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    return _vm.getUpcoming()
-                  }
-                }
-              },
-              [_vm._v("Get Upcoming")]
-            )
-          ])
+                },
+                [_vm._v("Get Upcoming")]
+              )
+            ],
+            1
+          )
         ]
       )
     ]),

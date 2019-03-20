@@ -35,12 +35,18 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        $genre = new Genre();
-        $genre->id = $request->input('genreId');
-        $genre->name = $request->input('genreName');
-                
-        if ($genre->save()) {
-            return redirect()->home();
+        $count = Genre::where('name', '=', $request->input('genreName'))->count();
+        if ($count == 0) {
+
+            $genre = new Genre();
+            $genre->id = $request->input('genreId');
+            $genre->name = $request->input('genreName');
+                    
+            if ($genre->save()) {
+                return redirect()->back() ->with('alert', $request->input('genreName') . ' Added Successfully!');
+            }
+        } else {
+            return redirect()->back()->with('alert', $request->input('genreName') . ' Already Exists!');
         }
     }
 

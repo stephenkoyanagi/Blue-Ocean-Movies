@@ -34,12 +34,14 @@
     <div class="main-panel" id="main-panel">
       @include('layouts.navbar')
       <div class="panel-header panel-header-lg">
-        
+          <upcoming-component></upcoming-component>
       </div>
       <div class="content">
           <div class="row">
               @yield('login')
               @yield('register')
+              
+
           </div>  
       </div> 
     </div>

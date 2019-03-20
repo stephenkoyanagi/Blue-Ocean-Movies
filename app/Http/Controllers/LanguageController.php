@@ -35,12 +35,17 @@ class LanguageController extends Controller
      */
     public function store(Request $request)
     {
-        $language = new Language();
-        $language->code = $request->input('languageCode');
-        $language->name = $request->input('languageName');
-                
-        if ($language->save()) {
-            return redirect()->home();
+        $count = Language::where('code', '=', $request->input('languageCode'))->count();
+        if($count == 0) {            
+            $language = new Language();
+            $language->code = $request->input('languageCode');
+            $language->name = $request->input('languageName');
+                    
+            if ($language->save()) {
+                return redirect()->back() ->with('alert', $request->input('languageName') . ' Added Successfully!');
+            }
+        } else {
+            return redirect()->back() ->with('alert', $request->input('languageName') . ' Already Exists!');   
         }
     }
 

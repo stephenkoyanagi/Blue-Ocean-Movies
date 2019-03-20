@@ -3,7 +3,8 @@
 		<div class="row">
 			<form @submit.prevent="getUpcoming">
 				<div class="form-group ml-2 mt-4 pt-2">
-					<input type="text" name="region" v-model="countryCode">
+					<country-dropdown-component @selectedCountry="selectCountry"></country-dropdown-component>
+					<language-dropdown-component @selectedLanguage="selectLanguage"></language-dropdown-component>
 					<button type="button" class="btn btn-warning" @click="getUpcoming()">Get Upcoming</button>
 				</div>
 			</form>
@@ -69,6 +70,7 @@
 		data() {
 			return {
 				countryCode: "",
+				languageCode: "",
 				upcomingResults: [],
 				totalPageCount: 0,
 				totalResults: 0,
@@ -93,7 +95,7 @@
 					"async": true,
 					"crossDomain": true,
 					"dataType": "json",
-					"url": "https://api.themoviedb.org/3/movie/upcoming?api_key=" + this.api_key + "&language=en-US&region=" + this.countryCode,
+					"url": "https://api.themoviedb.org/3/movie/upcoming?api_key=" + this.api_key + "&language=" + this.languageCode + "-" + this.countryCode + "&region=" + this.countryCode,
 					"method": "GET",
 					"headers": {},
 					"data": "{}"
@@ -111,6 +113,12 @@
 					return this.noImgFound;
 				}
 				return this.img_src + img;
+			},
+			selectCountry(code) {
+				this.countryCode = code;
+			},
+			selectLanguage(code) {
+				this.languageCode = code;
 			}
 		}
 	}

@@ -1,38 +1,43 @@
+<?php
+	$languages = App\Language::all();
+	$count = 0;
+?>
 
-<div class="col-lg-4">
-	<div class="card">
-		<div class="card-header">
-			<h4 class="card-title">Language</h4>
-			<!-- <div class="dropdown">
-				<button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-					<i class="now-ui-icons loader_gear"></i>
-				</button>
-				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" href="#">Action</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<a class="dropdown-item" href="#">Something else here</a>
-					<a class="dropdown-item text-danger" href="#">Remove Data</a>
-				</div>
-			</div> -->
+
+<div class="col-lg-4 col-lg-offset">
+	
+	<div class="card h-75 overflow-auto">
+		<div class="card-header bg-danger">
+			<h4 class="card-title text-center">Language</h4>
 		</div>
 		<div class="card-body">
-			<form action="{{ route('language.store') }}" method="post">
-				{{csrf_field()}}
-				<div class="form-group">
-    				<label for="languageCode">Code:</label>
-    				<input type="text" class="form-control" name="languageCode" id="languageCode">
-  				</div>
-  				<div class="form-group">
-    				<label for="languageName">Language Name:</label>
-    				<input type="text" class="form-control" name="languageName" id="languageName">
-  				</div>
-  				<button type="submit" class="btn btn-primary">Submit</button>
-			</form>
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped table-danger cellspacing='0'">
+					<thead class="thead-dark">
+						<tr>
+							<th>#</th>      
+                            <th>Code</th>
+                            <th>Name</th>
+						</tr>
+					</thead>
+					<tbody>						
+						@foreach($languages as $language)
+						<?php $count++; ?>
+						<tr>
+							<td width='40' class='table_width'>{{ $count }}</td>
+							<td width='40' class='table_width'>{{ $language->code }}</td>
+							<td width='150' class='table_width'>{{ $language->name }}</td>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>			
+			</div>
 		</div>
 		<div class="card-footer">
-			<!-- <div class="stats">
-				<i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
-			</div> -->
+			
 		</div>
+
 	</div>
+
 </div>
+
