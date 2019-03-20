@@ -13,7 +13,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+        return view('movie');
     }
 
     /**
@@ -45,7 +45,7 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        
+        return view('movie.moviedetail');
     }
 
     /**

@@ -31,3 +31,4 @@ Route::post('/language', 'LanguageController@store')->name('language.store');
 Route::get('/language/all', 'LanguageController@index');
 
 Route::get('/movie/{id}', 'MovieController@show');
+Route::get('/movie', 'MovieController@index');

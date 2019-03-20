@@ -5,7 +5,7 @@
 				<div class="form-group ml-2 mt-4 pt-2">
 					<country-dropdown-component @selectedCountry="selectCountry"></country-dropdown-component>
 					<language-dropdown-component @selectedLanguage="selectLanguage"></language-dropdown-component>
-					<button type="button" class="btn btn-warning" @click="getNowPlaying()">Get Now Playing</button>
+					<button type="button" class="btn btn-info" @click="getNowPlaying()">Get Now Playing</button>
 				</div>
 			</form>
 		</div>
@@ -13,9 +13,12 @@
 		<div class="row col-lg-12">
 			<div class="card">
 				<div class="card-header">
-	                <h4 class="card-title">Now Playing</h4>
+	                <h4 class="card-title">Now Playing</h4>	                
 	            </div>
 	            <div class="card-body">
+	            	<div class="row">
+	            		Test:
+	            	</div>
 	            	<div class="">
 		            	<table class="table table-striped table-dark text-warning" id="movieData">	
 							<thead class=" text-primary">

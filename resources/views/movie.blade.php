@@ -6,7 +6,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>{{ config('app.name', 'Blue Ocean Movies') . " | Dashboard" }}</title>
+  <title>{{ config('app.name', 'Blue Ocean Movies') . " | Movies" }}</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
@@ -22,27 +22,46 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+
+  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+          
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <script>window.Laravel = { csrfToken: '{{ csrf_token() }}' }</script>
+
   <!-- <link href="../assets/css/bootstrap.min.css" rel="stylesheet" /> -->
   <!-- <link href="../assets/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" /> -->
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <!-- <link href="../assets/demo/demo.css" rel="stylesheet" /> -->
+
 </head>
 
-<body>
-  <div id="app" class="wrapper ">
+<body class="">
+  <div  id="app" class="wrapper ">
     @include('layouts.sidebar')
     <div class="main-panel" id="main-panel">
       @include('layouts.navbar')
-      <div class="panel-header panel-header-lg">
-          
-      </div>
+       <div class="panel-header panel-header-lg">
+
+          <div class="container">
+
+              <div class="row">
+                  <div class="col bg-primary text-center">
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#search-movies">Search Movies</button>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upcoming-movies">Upcoming Movies</button>
+                  </div>
+              </div>
+
+          </div>
+
+          @include('movie.searchmovie')
+          @include('movie.upcomingmovie')
+    
+  </div>
+
       <div class="content">
           <div class="row">
-              @yield('login')
-              @yield('register')
               
-
-          </div>  
+          </div>
       </div> 
     </div>
   </div>

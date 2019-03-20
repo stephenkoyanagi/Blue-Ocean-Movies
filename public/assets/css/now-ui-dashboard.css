@@ -3877,6 +3877,8 @@ Created using IcoMoon - icomoon.io
 .modal-dialog,
 .modal-content {
     /* 80% of window height */
+    /*height: 90%;
+    max-width: 1200px;*/
     height: 90%;
 }
 
@@ -3884,4 +3886,27 @@ Created using IcoMoon - icomoon.io
     /* 100% = dialog height, 120px = header + footer */
     max-height: calc(100% - 120px);
     overflow-y: scroll;
+}
+
+.modal-dialog .nowplaying,
+.modal-content {
+    /* 80% of window height */
+    height: 90%;
+}
+
+.modal-body .nowplaying {
+    /* 100% = dialog height, 120px = header + footer */
+    max-height: calc(100% - 120px);
+    overflow-y: scroll;
+}
+
+@media (min-width: 768px) {
+  .hugeModal > .modal-dialog {
+    width: 90%;
+    max-width: 1200px; /* or 90% or whatever */
+  }
+}
+
+.bg-searchmovie {
+  background-color: #EC8460;
 }

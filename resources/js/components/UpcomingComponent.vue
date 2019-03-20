@@ -5,43 +5,48 @@
 				<div class="form-group ml-2 mt-4 pt-2">
 					<country-dropdown-component @selectedCountry="selectCountry"></country-dropdown-component>
 					<language-dropdown-component @selectedLanguage="selectLanguage"></language-dropdown-component>
-					<button type="button" class="btn btn-warning" @click="getUpcoming()">Get Upcoming</button>
+					<label for="page">Page:</label>
+					<input type="text" name="page" v-model="page">
+					<label v-if="totalResults > 0">of {{ this.totalPageCount }}</label>
+					<button type="button" class="btn btn-info" @click="getUpcoming()">Get Upcoming</button>
 				</div>
 			</form>
 		</div>
 
 		<div class="row col-lg-12">
 
-			<div class="card">
-				<div class="card-header">
+			<div class="card"> 
+				<div class="card-header" style="background-color: #A0514D;">
 	                <h4 class="card-title">Upcoming</h4>
 	            </div>
-	            <div class="card-body">
+	            <div class="card-body" style="background-color: #ABA68A">
+	            	<div class="btn-group mb-4 mt-2 text-center">
+	            		<button style="background-color: #C1815A" type="button" class="btn bg-buttons" @click="previousPage()">Prev. Page</button>
+	            		<button style="background-color: #C1815A" type="button" class="btn bg-buttons" @click="nextPage()">Next Page</button>
+	            	</div>
 	            	<div class="">
 		            	<table class="table table-dark text-warning" id="movieData">	
-							<thead class=" text-primary">
-								<th>#</th>	
-								<th>Id</th>
-								<th></th>
-								<th>Title</th>
-								<th>Overview</th>
-								<th>Release Date</th>
+							<thead class=" text-primary">								
+								<th width='200'></th>
+								<th width='50'>Id</th>								
+								<th width="150">Title</th>
+								<th width="300">Overview</th>
+								<th width="100">Release Date</th>
 								<!-- <th>Genre</th> -->
-								<th>Popularity</th>
-								<th>Voting Average</th>
-								<th>Vote Count</th>
+								<th width="50">Popularity</th>
+								<th width="50">Voting Average</th>
+								<th width="50">Vote Count</th>
 							</thead>
 							<tbody v-for="(item, index) in upcomingResults.results">
-								<tr>
-									<td> {{ index }}</td>
-									<td> {{ item.id }} </td>
+								<tr>																		
 									<td> <img :src="getPic(item.poster_path)"></td>
+									<td> {{ item.id }} </td>
 									<td> {{ item.title }} </td>
 									<td> {{ item.overview }} </td>
 									<td> {{ item.release_date }} </td>
+									<td> {{ item.popularity }} </td>
 									<td> {{ item.vote_average }} </td>
 									<!-- <td v-for="item"> </td> -->
-									<td> {{ item.popularity }} </td>
 									<td> {{ item.vote_count }} </td>
 									<!-- <td>
 										
@@ -74,6 +79,7 @@
 				upcomingResults: [],
 				totalPageCount: 0,
 				totalResults: 0,
+				page: 1,
 				img_src: "https://image.tmdb.org/t/p/w154/",
 				noImgFound: "https://www.fm.arizona.edu/phonebook/images/No_ImageFound.png",
 				upcoming: {
@@ -108,6 +114,59 @@
 				});
 
 			},
+
+			nextPage() {
+				var page = this.page + 1;
+				if(page <= this.totalPageCount)
+				{
+					this.page = page;
+
+					var responseData;
+						var settings = {
+							"async": true,
+							"crossDomain": true,
+							"dataType": "json",
+							"url": "https://api.themoviedb.org/3/movie/upcoming?api_key=" + this.api_key + "&language=" + this.languageCode + "-" + this.countryCode + "&region=" + this.countryCode + "&page=" + this.page,
+							"method": "GET",
+							"headers": {},
+							"data": "{}"
+						}
+						var self = this; 
+						$.ajax(settings).done(function (response) {
+							self.upcomingResults = response;
+							self.totalPageCount = response.total_pages;
+							self.totalResults = response.total_results;
+							console.log(self.upcomingResults);
+						});
+
+				}
+			},
+
+			previousPage() {
+				var page = this.page - 1;
+				if(page <= this.totalPageCount && page > 0)
+				{
+					this.page = page;
+					var responseData;
+						var settings = {
+							"async": true,
+							"crossDomain": true,
+							"dataType": "json",
+							"url": "https://api.themoviedb.org/3/movie/upcoming?api_key=" + this.api_key + "&language=" + this.languageCode + "-" + this.countryCode + "&region=" + this.countryCode + "&page=" + this.page,
+							"method": "GET",
+							"headers": {},
+							"data": "{}"
+						}
+						var self = this; 
+						$.ajax(settings).done(function (response) {
+							self.upcomingResults = response;
+							self.totalPageCount = response.total_pages;
+							self.totalResults = response.total_results;
+						});
+				}
+
+			},
+
 			getPic(img) {
 				if(img == null) {
 					return this.noImgFound;

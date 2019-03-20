@@ -12,13 +12,7 @@
                 </a>
             </li>
             
-            <!-- <li>
-                <a href="/configuration">
-                    <i class="now-ui-icons ui-1_bell-53"></i>
-                    <p>Configuration</p>
-                </a>
-            </li> -->
-
+            
             @guest
             @else
                 <li>
@@ -29,13 +23,15 @@
                 </li>    
             @endguest
             
-            
-            <li>
-                <a href="./notifications.html">
-                    <i class="now-ui-icons ui-1_bell-53"></i>
-                    <p>Notifications</p>
-                </a>
-            </li>
+            @guest
+            @else
+                <li>
+                    <a href="/movie">
+                        <i class="now-ui-icons ui-1_bell-53"></i>
+                        <p>Movies</p>
+                    </a>
+                </li>
+            @endguest
             <li>
                 <a href="./user.html">
                     <i class="now-ui-icons users_single-02"></i>
