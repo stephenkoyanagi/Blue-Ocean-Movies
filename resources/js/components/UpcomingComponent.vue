@@ -40,23 +40,13 @@
 							<tbody v-for="(item, index) in upcomingResults.results">
 								<tr>																		
 									<td> <img :src="getPic(item.poster_path)"></td>
-									<td> {{ item.id }} </td>
+									<td> <a :href="generateHref(item.id, item.title)">{{ item.id }}</a></td>
 									<td> {{ item.title }} </td>
 									<td> {{ item.overview }} </td>
 									<td> {{ item.release_date }} </td>
 									<td> {{ item.popularity }} </td>
-									<td> {{ item.vote_average }} </td>
-									<!-- <td v-for="item"> </td> -->
+									<td> {{ item.vote_average }} </td>									
 									<td> {{ item.vote_count }} </td>
-									<!-- <td>
-										
-										<form method="POST" action="route('genre.store')">
-											<input type="text" name="languageCode" :value="`${item.iso_639_1}`">
-											<input type="text" name="languageName" :value="`${item.english_name}`">
-											<button type="submit" class="btn btn-primary">Add</button>
-										</form>
-										
-									</td> -->
 								</tr>
 
 							</tbody>
@@ -80,6 +70,7 @@
 				totalPageCount: 0,
 				totalResults: 0,
 				page: 1,
+				href: "movie/",				
 				img_src: "https://image.tmdb.org/t/p/w154/",
 				noImgFound: "https://www.fm.arizona.edu/phonebook/images/No_ImageFound.png",
 				upcoming: {
@@ -159,6 +150,7 @@
 						}
 						var self = this; 
 						$.ajax(settings).done(function (response) {
+							console.log(response);
 							self.upcomingResults = response;
 							self.totalPageCount = response.total_pages;
 							self.totalResults = response.total_results;
@@ -178,7 +170,10 @@
 			},
 			selectLanguage(code) {
 				this.languageCode = code;
-			}
+			},
+			generateHref(id, name) {
+				return this.href + id + "/" + name;
+			},
 		}
 	}
 </script>

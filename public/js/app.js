@@ -2020,6 +2020,108 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GetCreditComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GetCreditComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "MovieCastComponent",
+  props: ['movie-id', 'movie-title'],
+  data: function data() {
+    return {
+      movieId: "",
+      movieTitle: "",
+      movieCast: [],
+      img_src: "https://image.tmdb.org/t/p/w185/",
+      noImgFound: "https://www.fm.arizona.edu/phonebook/images/No_ImageFound.png",
+      api_key: "07095eeae7a32cd735b4ed3af97afb77"
+    };
+  },
+  mounted: function mounted() {
+    console.log('Component mounted.');
+    console.log(this.movie - id);
+    console.log(this.movie - title);
+    this.movieId = this.movie - id;
+    this.movieTitle = this.movie - title;
+  },
+  created: function created() {
+    // fetch the data when the view is created and the data is
+    // already being observed
+    this.getMovieCast();
+  },
+  methods: {
+    getMovieCast: function getMovieCast() {
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.themoviedb.org/3/movie/" + this.movieId + "/credits?api_key=" + this.api_key,
+        "method": "GET",
+        "headers": {},
+        "data": "{}"
+      };
+      var self = this;
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        self.movieCast = response.cast;
+      });
+    },
+    getPic: function getPic(img) {
+      if (img == null) {
+        return this.noImgFound;
+      }
+
+      return this.img_src + img;
+    },
+    getGender: function getGender(id) {
+      if (id == 0) return "Unspecified";
+      elseif(id == 1);
+      return "Female";
+      elseif(id == 2);
+      return "Male";
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LanguageComponent.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LanguageComponent.vue?vue&type=script&lang=js& ***!
@@ -2209,18 +2311,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MovieDetailComponent",
+  props: ['movie-id', 'movie-title'],
   data: function data() {
     return {
       movieId: "",
@@ -2239,6 +2332,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log('Component mounted.');
+    console.log(this.movie - id);
+    console.log(this.movie - title);
+    this.movieId = this.movie - id;
+  },
+  created: function created() {
+    // fetch the data when the view is created and the data is
+    // already being observed
+    this.getMovieDetails();
   },
   methods: {
     getMovieDetails: function getMovieDetails() {
@@ -2592,8 +2693,8 @@ __webpack_require__.r(__webpack_exports__);
     selectLanguage: function selectLanguage(languageCode) {
       this.language = languageCode;
     },
-    generateHref: function generateHref(id) {
-      return this.href + id;
+    generateHref: function generateHref(id, name) {
+      return this.href + id + "/" + name;
     }
   }
 });
@@ -2808,16 +2909,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UpcomingComponent",
   data: function data() {
@@ -2828,6 +2919,7 @@ __webpack_require__.r(__webpack_exports__);
       totalPageCount: 0,
       totalResults: 0,
       page: 1,
+      href: "movie/",
       img_src: "https://image.tmdb.org/t/p/w154/",
       noImgFound: "https://www.fm.arizona.edu/phonebook/images/No_ImageFound.png",
       upcoming: {
@@ -2902,6 +2994,7 @@ __webpack_require__.r(__webpack_exports__);
         };
         var self = this;
         $.ajax(settings).done(function (response) {
+          console.log(response);
           self.upcomingResults = response;
           self.totalPageCount = response.total_pages;
           self.totalResults = response.total_results;
@@ -2920,6 +3013,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectLanguage: function selectLanguage(code) {
       this.languageCode = code;
+    },
+    generateHref: function generateHref(id, name) {
+      return this.href + id + "/" + name;
     }
   }
 });
@@ -2945,23 +3041,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "VideoComponent",
+  props: ['movieId', 'movieTitle'],
   data: function data() {
     return {
       videosResults: [],
-      videos: {
-        id: 166428,
-        name: "",
-        site: "",
-        type: "",
-        size: ""
-      },
-      api_key: "07095eeae7a32cd735b4ed3af97afb77"
+      api_key: "07095eeae7a32cd735b4ed3af97afb77",
+      videoId: "",
+      videoTitle: ""
     };
   },
   mounted: function mounted() {
     console.log('Component mounted.');
+    console.log(this.movieId);
+    console.log(this.movieTitle);
+    this.videoId = this.movieId;
+    this.videoTitle = this.movieTitle;
+  },
+  created: function created() {
+    this.getVideos();
   },
   methods: {
     getVideos: function getVideos() {
@@ -2969,13 +3074,15 @@ __webpack_require__.r(__webpack_exports__);
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://api.themoviedb.org/3/movie/" + this.videos.id + "/videos?language=en-US&api_key=" + this.api_key,
+        "url": "https://api.themoviedb.org/3/movie/" + this.movieId + "/videos?api_key=" + this.api_key + "&language=en-US",
         "method": "GET",
         "headers": {},
         "data": "{}"
       };
+      var self = this;
       $.ajax(settings).done(function (response) {
         console.log(response);
+        self.videosResults = response.results;
       });
     }
   }
@@ -38997,6 +39104,84 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GetCreditComponent.vue?vue&type=template&id=9c0e030e&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/GetCreditComponent.vue?vue&type=template&id=9c0e030e& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row col-lg-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _c("h4", { staticClass: "card-title" }, [
+            _vm._v(_vm._s(this.movieTitle))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "table",
+            {
+              staticClass: "table table-striped table-dark",
+              staticStyle: { "background-color": "#A0514D" },
+              attrs: { id: "movieData" }
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._l(_vm.movieCast, function(item, index) {
+                return _c("tbody", [
+                  _c("tr", [
+                    _c("td", [
+                      _c("img", {
+                        attrs: { src: _vm.getPic(item.profile_path) }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(" " + _vm._s(item.character))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(" " + _vm._s(item.name))])
+                  ])
+                ])
+              })
+            ],
+            2
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", {}, [
+      _c("th", { attrs: { width: "200" } }),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "50" } }, [_vm._v("Character")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "300" } }, [_vm._v("Name")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LanguageComponent.vue?vue&type=template&id=c56821ac&":
 /*!********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LanguageComponent.vue?vue&type=template&id=c56821ac& ***!
@@ -39181,64 +39366,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "form",
-        {
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.getMovieDetails($event)
-            }
-          }
-        },
-        [
-          _c("div", { staticClass: "form-group ml-2 mt-4 pt-2" }, [
-            _c("label", { attrs: { for: "movieId" } }, [_vm._v("Movie Id")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.movieId,
-                  expression: "movieId"
-                }
-              ],
-              attrs: { type: "text", name: "movieId" },
-              domProps: { value: _vm.movieId },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.movieId = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-warning",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    return _vm.getMovieDetails()
-                  }
-                }
-              },
-              [_vm._v("Get Movie Details")]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden", name: "movieTitle", id: "movieTitle" }
-            })
-          ])
-        ]
-      )
-    ]),
-    _vm._v(" "),
     _c("div", { staticClass: "row col-lg-12" }, [
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-header" }, [
@@ -39255,51 +39382,62 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", {}, [
-            _c("table", { staticClass: "table", attrs: { id: "movieData" } }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("tbody", [
-                _c(
-                  "tr",
-                  [
-                    _c("td", [
-                      _vm._v(" " + _vm._s(_vm.movieDetailResults.overview))
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.genres, function(item, index) {
-                      return _c("table", [
-                        _c("tr", [_c("td", [_vm._v(" " + _vm._s(item.name))])])
+            _c(
+              "table",
+              {
+                staticClass: "table table-striped table-dark",
+                attrs: { id: "movieData" }
+              },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("tbody", [
+                  _c(
+                    "tr",
+                    [
+                      _c("td", [
+                        _vm._v(" " + _vm._s(_vm.movieDetailResults.overview))
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.genres, function(item, index) {
+                        return _c("table", [
+                          _c("tr", [
+                            _c("td", [_vm._v(" " + _vm._s(item.name))])
+                          ])
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(" " + _vm._s(_vm.movieDetailResults.runtime))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          " " + _vm._s(_vm.movieDetailResults.release_date)
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(" " + _vm._s(_vm.movieDetailResults.popularity))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(" " + _vm._s(_vm.movieDetailResults.tagline))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(" " + _vm._s(_vm.movieDetailResults.revenue))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(" " + _vm._s(_vm.movieDetailResults.budget))
                       ])
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(" " + _vm._s(_vm.movieDetailResults.runtime))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(" " + _vm._s(_vm.movieDetailResults.release_date))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(" " + _vm._s(_vm.movieDetailResults.popularity))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(" " + _vm._s(_vm.movieDetailResults.tagline))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(" " + _vm._s(_vm.movieDetailResults.revenue))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(" " + _vm._s(_vm.movieDetailResults.budget))
-                    ])
-                  ],
-                  2
-                )
-              ])
-            ])
+                    ],
+                    2
+                  )
+                ])
+              ]
+            )
           ])
         ])
       ])
@@ -39312,21 +39450,21 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: " text-primary" }, [
-      _c("th", [_vm._v("Overview")]),
+      _c("th", { attrs: { width: "300" } }, [_vm._v("Overview")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Genre")]),
+      _c("th", { attrs: { width: "100" } }, [_vm._v("Genre")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Runtime")]),
+      _c("th", { attrs: { width: "50" } }, [_vm._v("Runtime")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Release Date")]),
+      _c("th", { attrs: { width: "100" } }, [_vm._v("Release Date")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Popularity")]),
+      _c("th", { attrs: { width: "50" } }, [_vm._v("Popularity")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Tag Line")]),
+      _c("th", { attrs: { width: "100" } }, [_vm._v("Tag Line")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Revenue")]),
+      _c("th", { attrs: { width: "50" } }, [_vm._v("Revenue")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Budget")])
+      _c("th", { attrs: { width: "50" } }, [_vm._v("Budget")])
     ])
   }
 ]
@@ -39692,7 +39830,11 @@ var render = function() {
                         _c("td", [
                           _c(
                             "a",
-                            { attrs: { href: _vm.generateHref(item.id) } },
+                            {
+                              attrs: {
+                                href: _vm.generateHref(item.id, item.title)
+                              }
+                            },
                             [_vm._v(_vm._s(item.id))]
                           )
                         ]),
@@ -40162,7 +40304,17 @@ var render = function() {
                           })
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(" " + _vm._s(item.id) + " ")]),
+                        _c("td", [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.generateHref(item.id, item.title)
+                              }
+                            },
+                            [_vm._v(_vm._s(item.id))]
+                          )
+                        ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(" " + _vm._s(item.title) + " ")]),
                         _vm._v(" "),
@@ -40250,23 +40402,38 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticStyle: { "background-color": "#A0514D" } }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "form-group ml-2 mt-4 pt-2" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-warning",
-            attrs: { type: "button" },
-            on: {
-              click: function($event) {
-                return _vm.getVideos()
-              }
-            }
-          },
-          [_vm._v("Get Videos")]
-        )
-      ])
+      _c(
+        "div",
+        { attrs: { id: "app" } },
+        [
+          _c("h2", { staticClass: "col-md-6 offset-md-3" }, [
+            _vm._v(_vm._s(this.movieTitle))
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.videosResults, function(video) {
+            return _c("div", { staticClass: "col-md-6 offset-md-3" }, [
+              _c("iframe", {
+                attrs: {
+                  id: "ytplayer",
+                  type: "text/html",
+                  width: "640",
+                  height: "360",
+                  src:
+                    "https://www.youtube.com/embed/" +
+                    video.key +
+                    "?autoplay=0&origin=http://example.com",
+                  frameborder: "0"
+                }
+              }),
+              _vm._v(" "),
+              _c("hr")
+            ])
+          })
+        ],
+        2
+      )
     ])
   ])
 }
@@ -52420,6 +52587,7 @@ Vue.component('search-movie-component', __webpack_require__(/*! ./components/Sea
 Vue.component('genre-dropdown-component', __webpack_require__(/*! ./components/GenreDropDownComponent.vue */ "./resources/js/components/GenreDropDownComponent.vue").default);
 Vue.component('country-dropdown-component', __webpack_require__(/*! ./components/CountryDropDownComponent.vue */ "./resources/js/components/CountryDropDownComponent.vue").default);
 Vue.component('language-dropdown-component', __webpack_require__(/*! ./components/LanguageDropDownComponent.vue */ "./resources/js/components/LanguageDropDownComponent.vue").default);
+Vue.component('get-credit-component', __webpack_require__(/*! ./components/GetCreditComponent.vue */ "./resources/js/components/GetCreditComponent.vue").default);
 axios.defaults.headers.get['Content-Type'] = 'application/json';
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -52762,6 +52930,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GenreDropDownComponent_vue_vue_type_template_id_5bc81798___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GenreDropDownComponent_vue_vue_type_template_id_5bc81798___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/GetCreditComponent.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/GetCreditComponent.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _GetCreditComponent_vue_vue_type_template_id_9c0e030e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GetCreditComponent.vue?vue&type=template&id=9c0e030e& */ "./resources/js/components/GetCreditComponent.vue?vue&type=template&id=9c0e030e&");
+/* harmony import */ var _GetCreditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GetCreditComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/GetCreditComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _GetCreditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _GetCreditComponent_vue_vue_type_template_id_9c0e030e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _GetCreditComponent_vue_vue_type_template_id_9c0e030e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/GetCreditComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/GetCreditComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/GetCreditComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GetCreditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./GetCreditComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GetCreditComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GetCreditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/GetCreditComponent.vue?vue&type=template&id=9c0e030e&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/GetCreditComponent.vue?vue&type=template&id=9c0e030e& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GetCreditComponent_vue_vue_type_template_id_9c0e030e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./GetCreditComponent.vue?vue&type=template&id=9c0e030e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/GetCreditComponent.vue?vue&type=template&id=9c0e030e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GetCreditComponent_vue_vue_type_template_id_9c0e030e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GetCreditComponent_vue_vue_type_template_id_9c0e030e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

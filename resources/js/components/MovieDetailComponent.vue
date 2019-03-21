@@ -1,16 +1,6 @@
 <template>
 	<div>
-		<div class="row">
-			<form @submit.prevent="getMovieDetails">
-				<div class="form-group ml-2 mt-4 pt-2">
-					<label for="movieId">Movie Id</label>
-					<input type="text" name="movieId" v-model="movieId">
-					<button type="button" class="btn btn-warning" @click="getMovieDetails()">Get Movie Details</button>
-					<input type="hidden" name="movieTitle" id="movieTitle">
-				</div>
-			</form>
-		</div>
-
+		
 		<div class="row col-lg-12">
 			<div class="card">
 				<div class="card-header">
@@ -21,16 +11,16 @@
 	            		<img :src="getPic(movieDetailResults.poster_path)">
 	            	</div>
 	            	<div class="">
-		            	<table class="table" id="movieData">	
+		            	<table class="table table-striped table-dark" id="movieData">	
 							<thead class=" text-primary"> 
-								<th>Overview</th>
-								<th>Genre</th>
-								<th>Runtime</th>
-								<th>Release Date</th>
-								<th>Popularity</th>
-								<th>Tag Line</th>
-								<th>Revenue</th>
-								<th>Budget</th>
+								<th width="300">Overview</th>
+								<th width="100">Genre</th>
+								<th width="50">Runtime</th>
+								<th width="100">Release Date</th> 
+								<th width="50">Popularity</th>
+								<th width="100">Tag Line</th>
+								<th width="50">Revenue</th>
+								<th width="50">Budget</th>
 							</thead>
 							<tbody>
 								<tr>
@@ -61,6 +51,7 @@
 <script>
 	export default {
 		name: "MovieDetailComponent",
+		props: ['movie-id','movie-title'],
 		data() {
 			return {
 				movieId: "",
@@ -79,7 +70,16 @@
 		},
 		mounted() {
             console.log('Component mounted.');
+            console.log(this.movie-id);
+            console.log(this.movie-title);
+            this.movieId = this.movie-id;
+
         },
+        created () {
+		    // fetch the data when the view is created and the data is
+		    // already being observed
+		    this.getMovieDetails();
+  },
 		methods: {
 			getMovieDetails(){
 				var settings = {

@@ -1,4 +1,4 @@
-<div class="modal fade hugeModal"  id="moviedetail">
+<div class="modal fade hugeModal"  id="movievideo">
     <div class="modal-dialog modal-lg" style="background-color: #4C525C;">
         <div class="modal-content">
     
@@ -9,7 +9,7 @@
           
             <!-- Modal body -->
             <div class="modal-body" style="background-color: #4C525C;">
-              <movie-detail-component movie-id= "{{ $id }}" movie-title= "{{ $name }}"></movie-detail-component>
+              <video-component movie-id= "{{ $id }}" movie-title= "{{ $name }}"></video-component>
             </div>
       
             <!-- Modal footer -->
@@ -19,4 +19,4 @@
       
         </div>
     </div>
-</div> 
+</div>

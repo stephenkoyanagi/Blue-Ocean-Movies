@@ -44,7 +44,7 @@
 							<tbody v-for="(item, index) in movieSearchResults.results">
 								<tr>
 									<td> <img :src="getPic(item.poster_path)"></td>
-									<td> <a :href="generateHref(item.id)">{{ item.id }}</a></td>
+									<td> <a :href="generateHref(item.id, item.title)">{{ item.id }}</a></td>
 									<td> {{ item.title }}</td>
 									<td> {{ item.overview }}</td>
 									<td> {{ item.popularity }}</td>
@@ -185,8 +185,8 @@
 			selectLanguage(languageCode) {
 				this.language = languageCode;
 			},
-			generateHref(id) {
-				return this.href + id;
+			generateHref(id, name) {
+				return this.href + id + "/" + name;
 			},
 		}
 	}

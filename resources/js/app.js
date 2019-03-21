@@ -36,6 +36,7 @@ Vue.component('search-movie-component', require('./components/SearchMovieCompone
 Vue.component('genre-dropdown-component', require('./components/GenreDropDownComponent.vue').default);
 Vue.component('country-dropdown-component', require('./components/CountryDropDownComponent.vue').default);
 Vue.component('language-dropdown-component', require('./components/LanguageDropDownComponent.vue').default);
+Vue.component('get-credit-component', require('./components/GetCreditComponent.vue').default);
 
 axios.defaults.headers.get['Content-Type'] = 'application/json';
 

@@ -43,9 +43,14 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $name)
     {
-        return view('movie.moviedetail');
+        $data = [
+            'id' => $id,
+            'name' => $name
+        ];
+
+        return view('moviedetail')->with($data);
     }
 
     /**
