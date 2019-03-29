@@ -5,10 +5,29 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Genre;
+use App\Country;
+use App\Language;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+
+    public function genres()
+    {
+        return $this->hasMany('\App\Genre');
+    }
+
+    public function countries()
+    {
+        return $this->hasMany('\App\Country');
+    }
+
+    public function languages()
+    {
+        return $this->hasMany('\App\Language');
+    }
 
     /**
      * The attributes that are mass assignable.

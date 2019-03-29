@@ -3,7 +3,7 @@
 		<div class="row col-lg-12">
 			<div class="card">
 				<div class="card-header">
-	                <h4 class="card-title underline">Country</h4>
+	                <h4 class="card-title text-center">Country</h4>
 	            </div>
 	            <div class="card-body">
 	            	<div class="">
@@ -44,7 +44,7 @@
 		name: "CountryComponent",
 		data() {
 			return {
-				countryResults: [],
+				countryResults: [],				
 				country: {
 					id: "",
 					name: ""
@@ -69,7 +69,7 @@
 				}
 				var self = this;
 				$.ajax(settings).done(function (response) {
-					self.countryResults = response;
+					self.countryResults = response;					
 				});
 			},
 		}

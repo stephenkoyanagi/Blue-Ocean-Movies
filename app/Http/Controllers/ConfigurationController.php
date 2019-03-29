@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Genre;
+use App\Country;
+use App\Language;
 
-class GenreController extends Controller
+class ConfigurationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +15,12 @@ class GenreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return Genre::where('user_id', Auth::user()->id)->get();
+    {        
+        $data['genres'] = Genre::where('user_id','=', Auth::user()->id)->get();
+        $data['languages'] = Language::where('user_id','=', Auth::user()->id)->get();
+        $data['countries'] = Country::where('user_id','=', Auth::user()->id)->get();
+
+        return view('configuration', $data);   
     }
 
     /**
@@ -24,7 +30,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -34,21 +40,8 @@ class GenreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
-        $count = Genre::where('name', '=', $request->input('genreName'))->where('user_id', Auth::user()->id)->count();
-        if ($count == 0) {
-
-            $genre = new Genre();
-            $genre->id = $request->input('genreId');
-            $genre->name = $request->input('genreName');
-            $genre->user_id = Auth::user()->id;
-                    
-            if ($genre->save()) {
-                return redirect()->back()->with('alert', $request->input('genreName') . ' Added Successfully!');
-            }
-        } else {
-            return redirect()->back()->with('alert', $request->input('genreName') . ' Already Exists!');
-        }
+    {
+        //
     }
 
     /**
@@ -92,13 +85,7 @@ class GenreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {        
-        $genre = Genre::where('id',$id)->where('user_id', Auth::user()->id)->firstOrFail();
-        
-        $genreName = $genre->name;
-
-        $genre->delete();
-        
-        return redirect()->back()->with('alert', $genreName . ' Deleted Successfully!');
+    {
+        //
     }
 }

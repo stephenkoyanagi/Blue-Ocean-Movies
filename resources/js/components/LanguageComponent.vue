@@ -43,7 +43,7 @@
 		name: "LanguageComponent",
 		data() {
 			return {
-				languageResults: [],
+				languageResults: [],				
 				language: {
 					code: "",
 					name: ""
@@ -54,6 +54,7 @@
 		},
 		mounted() {
             this.getLanguage();
+
         },
 		methods: {
 			getLanguage(){
@@ -68,8 +69,8 @@
 				}
 				var self = this;
 				$.ajax(settings).done(function (response) {
-					self.languageResults = response;
-				});
+					self.languageResults = response;					
+				});				
 
 			},
 		}

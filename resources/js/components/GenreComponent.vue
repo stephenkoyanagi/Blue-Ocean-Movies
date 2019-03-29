@@ -3,7 +3,7 @@
 		<div class="row col-lg-12">
 			<div class="card">
 				<div class="card-header">
-	                <h4 class="card-title">Genres</h4>
+	                <h4 class="card-title text-justify">Genres</h4>
 	            </div>
 	            <div class="card-body">
 	            	<div class="">
@@ -17,14 +17,15 @@
 								<tr>
 									<td> {{ index }} </td>
 									<td> {{ item.id }} </td>
-									<td> {{ item.name }} </td>
+									<td> {{ item.name }} </td>									
 									<td>
 										
 										<form method="post" action="/genre">
 											<input type="hidden" name="_token" :value="csrf">
 											<input type="hidden" name="genreId" :value="`${item.id}`">
-											<input type="hidden"  name="genreName" :value="`${item.name}`">
+											<input type="hidden"  name="genreName" :value="`${item.name}`">											
 											<button type="submit" class="btn btn-primary">Add</button>
+
 										</form>
 										
 									</td>
@@ -44,7 +45,7 @@
 		props: ['post-route'],
 		data() {
 			return {
-				genreResults: [],
+				genreResults: [],				
 				genre: {
 					id: 0,
 					name: ""
@@ -70,7 +71,7 @@
 				}
 				var self = this;
 				$.ajax(settings).done(function (response) {
-					self.genreResults = response.genres;
+					self.genreResults = response.genres;					
 				});
 			},
 		}
