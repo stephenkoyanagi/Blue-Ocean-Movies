@@ -1,14 +1,17 @@
 <template>
 	<div>
-		<div class="row">
-			<form @submit.prevent="getUpcoming">
-				<div class="form-group ml-2 mt-4 pt-2">
+		<div class="row form-group grid col-lg-auto">
+			<form @submit.prevent="getUpcoming" id="upcoming">
+				<div class="form-group card-title" >
 					<country-dropdown-component @selectedCountry="selectCountry"></country-dropdown-component>
 					<language-dropdown-component @selectedLanguage="selectLanguage"></language-dropdown-component>
 					<label for="page">Page:</label>
 					<input type="text" name="page" v-model="page">
 					<label v-if="totalResults > 0">of {{ this.totalPageCount }}</label>
-					<button type="button" class="btn btn-info" @click="getUpcoming()">Get Upcoming</button>
+					<button type="button" class="btn bg-buttons" @click="getUpcoming()">Get Upcoming</button>
+
+
+		
 				</div>
 			</form>
 		</div>
@@ -16,17 +19,17 @@
 		<div class="row col-lg-12">
 
 			<div class="card"> 
-				<div class="card-header" style="background-color: #A0514D;">
-	                <h4 class="card-title">Upcoming</h4>
+				<div class="card-header" style="background-color: #28A2EF;">
+	                <h4 class="card-title text-center" style="color: #E6E6DE;">Upcoming</h4>
 	            </div>
-	            <div class="card-body" style="background-color: #ABA68A">
+	            <div class="card-body justify-content-center bg-card-body">
 	            	<div class="btn-group mb-4 mt-2 text-center">
-	            		<button style="background-color: #C1815A" type="button" class="btn bg-buttons" @click="previousPage()">Prev. Page</button>
-	            		<button style="background-color: #C1815A" type="button" class="btn bg-buttons" @click="nextPage()">Next Page</button>
+	            		<button type="button" class="btn bg-buttons" @click="previousPage()">Prev. Page</button>
+	            		<button type="button" class="btn bg-buttons" @click="nextPage()">Next Page</button>
 	            	</div>
-	            	<div class="">
-		            	<table class="table table-dark text-warning" id="movieData">	
-							<thead class=" text-primary">								
+	            	<div class="table-responsive">
+		            	<table class="table table-striped table-dark" style="background-color: #28A2EF;" id=" movieData">	
+							<thead class="">								
 								<th width='200'></th>
 								<th width='50'>Id</th>								
 								<th width="150">Title</th>
@@ -48,7 +51,6 @@
 									<td> {{ item.vote_average }} </td>									
 									<td> {{ item.vote_count }} </td>
 								</tr>
-
 							</tbody>
 						</table>
 					</div>
@@ -70,7 +72,8 @@
 				totalPageCount: 0,
 				totalResults: 0,
 				page: 1,
-				href: "movie/",				
+				headerBackGroundColor: "bg-card-header",
+				href: "movie/",
 				img_src: "https://image.tmdb.org/t/p/w154/",
 				noImgFound: "https://www.fm.arizona.edu/phonebook/images/No_ImageFound.png",
 				upcoming: {
@@ -177,3 +180,19 @@
 		}
 	}
 </script>
+
+<style>
+	.bg-card-header {
+		background-color: #28A2EF;
+	}
+	.bg-buttons {
+		background-color: #FF6FBA;
+	}
+	.bg-table-header {
+		background-color: #749988;
+	}
+	.bg-card-body {
+		background-color: #FAF9F8;
+	}
+
+</style>

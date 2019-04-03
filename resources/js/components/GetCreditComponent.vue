@@ -8,17 +8,19 @@
 	            </div>
 	            <div class="card-body">	            	
 	            	
-	            	<table class="table table-striped table-dark" style="background-color: #A0514D;" id="movieData">	
-						<thead style="" > 
+	            	<table class="table table-striped table-dark" id="movieData">	
+						<thead class="text-primary" style="" > 
 							<th width='200'></th>
+							<th width='50'>Id</th>
 							<th width='50'>Character</th>							
 							<th width="300">Name</th>								
 						</thead>
 						<tbody v-for="(item, index) in movieCast">
 							<tr>
 								<td> <img :src="getPic(item.profile_path)"></td>
-								<td> {{ item.character}}</td>
-								<td> {{ item.name }}</td>								
+								<td> <a :href="generateHref(item.id, item.title)">{{ item.id }}</a></td>
+								<td> {{ item.character}} </td>
+								<td> {{ item.name }} </td>								
 							</tr>
 						</tbody>
 					</table>
@@ -39,7 +41,8 @@
 			return {
 				movieId: "",
 				movieTitle: "",
-				movieCast: [],				
+				movieCast: [],
+				href: "person/",
 				img_src: "https://image.tmdb.org/t/p/w185/",
 				noImgFound: "https://www.fm.arizona.edu/phonebook/images/No_ImageFound.png",
 				api_key: "07095eeae7a32cd735b4ed3af97afb77"
@@ -88,6 +91,10 @@
 					return "Female";
 				elseif( id == 2)
 					return "Male";
+			},
+
+			generateHref(id, name) {
+				return this.href + id;
 			}
 		}
 	}

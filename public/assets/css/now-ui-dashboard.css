@@ -3910,3 +3910,12 @@ Created using IcoMoon - icomoon.io
 .bg-searchmovie {
   background-color: #EC8460;
 }
+
+.bg-buttons {
+    background-color: #2065AD !important;
+    color: #E6E6DE !important;
+}
+
+.bg-modal-footer, .bg-modal-header {
+    background-color: #28A2EF; !important;
+}

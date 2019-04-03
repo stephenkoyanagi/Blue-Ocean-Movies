@@ -3,10 +3,10 @@
 		
 		<div class="row col-lg-12">
 			<div class="card">
-				<div class="card-header">
+				<div class="card-header text-center bg-card-header">
 	                <h4 class="card-title">{{ movieDetailResults.title }}</h4>
 	            </div>
-	            <div class="card-body">
+	            <div class="card-body text-center">
 	            	<div class="">
 	            		<img :src="getPic(movieDetailResults.poster_path)">
 	            	</div>
@@ -58,7 +58,7 @@
 				movieTitle: "",
 				movieDetailResults: [],
 				genres: [],
-				img_src: "https://image.tmdb.org/t/p/w500/",
+				img_src: "https://image.tmdb.org/t/p/w342/",
 				movieDetail: {
 					id: 0,
 					title: "",
@@ -102,3 +102,19 @@
 		}
 	}
 </script>
+
+<style>
+	.bg-card-header {
+		background-color: #28A2EF;
+	}
+	.bg-buttons {
+		background-color: #FF6FBA;
+	}
+	.bg-table-header {
+		background-color: #749988;
+	}
+	.bg-card-body {
+		background-color: #FAF9F8;
+	}
+
+</style>

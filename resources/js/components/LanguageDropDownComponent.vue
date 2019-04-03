@@ -1,5 +1,5 @@
 <template>
-	<select class="btn btn-warning" v-model="code" @change="selectLanguage(code)">
+	<select class="btn languageBgColor" v-model="code" @change="selectLanguage(code)">
 		<option v-for="(item, index) in languageResults" :value="item.code">{{ item.name }}</option>
 	</select>
 </template>
@@ -31,3 +31,9 @@
 	}
 
 </script>
+
+<style type="text/css">
+	.languageBgColor {
+		background-color: #F1F1EF;
+	}
+</style>

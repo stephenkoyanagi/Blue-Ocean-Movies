@@ -1,5 +1,5 @@
 <template>
-	<select class="btn btn-warning" v-model="code" @change="selectCountry(code)">
+	<select class="btn countryBgColor" v-model="code" @change="selectCountry(code)">
 		<option v-for="(item, index) in countryResults" :value="item.code">{{ item.name }}</option>
 	</select>
 </template>
@@ -31,3 +31,9 @@
 	}
 
 </script>
+
+<style type="text/css">
+	.countryBgColor {
+		background-color: #F1F1EF;
+	}
+</style>
