@@ -47,9 +47,9 @@
               <div class="row">
 
                   <div class="col bg-primary text-center">
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#moviedetail">Movie Detail</button>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#movievideo">Movie Videos</button>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#moviecast">Movie Cast</button>
+                      <button type="button" class="btn bg-buttons" data-toggle="modal" data-target="#moviedetail">Movie Detail</button>
+                      <button type="button" class="btn bg-buttons" data-toggle="modal" data-target="#movievideo">Movie Videos</button>
+                      <button type="button" class="btn bg-buttons" data-toggle="modal" data-target="#moviecast">Movie Cast</button>
                   </div>
               </div>
 

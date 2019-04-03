@@ -1,9 +1,9 @@
 <div class="modal fade hugeModal"  id="moviedetail">
-    <div class="modal-dialog modal-lg" style="background-color: #4C525C;">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
     
             <!-- Modal Header -->
-            <div class="modal-header hugeModal" style="background-color: #A0514D;">
+            <div class="modal-header hugeModal bg-modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
           
@@ -13,8 +13,8 @@
             </div>
       
             <!-- Modal footer -->
-            <div class="modal-footer" style="background-color: #A0514D;">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <div class="modal-footer bg-modal-footer">
+              <button type="button" class="btn bg-buttons" data-dismiss="modal">Close</button>
             </div>
       
         </div>

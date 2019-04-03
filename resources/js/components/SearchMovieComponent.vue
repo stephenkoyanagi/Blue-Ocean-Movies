@@ -2,8 +2,7 @@
 	<div>
 		<div class="row form-group grid col-lg-auto">
 			<form @submit.prevent="searchMovie" class="">
-				<div class="form-group" style="background-color: #C1815A">
-
+				<div class="form-group card-title" style="background-color: #28A2EF">
 					<label>Search:</label>
 					<input type="text" name="searchQuery" v-model="searchQuery">
 					<label>Language:</label>
@@ -14,7 +13,7 @@
 					<label v-if="totalResults > 0">of {{ this.totalPageCount }}</label>
 					<label for="year">Year:</label>
 					<input type="text" class="datepicker" id="datepicker" name="year" v-model="year">
-					<button type="button" class="btn btn-info" @click="searchMovie()">Search</button>
+					<button type="button" class="btn bg-buttons" @click="searchMovie()">Search</button>
 				</div>
 			</form>
 		</div>
@@ -22,17 +21,16 @@
 		<div class="row col-lg-12">
 
 			<div class="card bg-card-header">
-				<div class="card-header" style="background-color: #A0514D;">
+				<div class="card-header">
 	                <h4 class="card-title text-center" style="color: #E6E6DE;">Search Movie</h4>
 	            </div>
-	            <div class="card-body justify-content-center" style="background-color: #ABA68A">
-	            	
+	            <div class="card-body justify-content-center bg-card-body">	            	
 	            	<div class="btn-group mb-4 mt-2 text-center">
-	            		<button style="background-color: #C1815A" type="button" class="btn bg-buttons" @click="previousPage()">Prev. Page</button>
-	            		<button style="background-color: #C1815A" type="button" class="btn bg-buttons" @click="nextPage()">Next Page</button>
+	            		<button style="background-color: #2065AD; color: #E6E6DE;" type="button" class="btn bg-buttons" @click="previousPage()">Prev. Page</button>
+	            		<button style="background-color: #2065AD; color: #E6E6DE;" type="button" class="btn bg-buttons" @click="nextPage()">Next Page</button>
 	            	</div>
-	            	<div class="">
-		            	<table class="table table-striped table-dark" style="background-color: #A0514D;" id="movieData">	
+	            	<div class="table-responsive">
+		            	<table class="table table-striped table-dark" style="background-color: #28A2EF;" id="movieData">	
 							<thead style="" > 
 								<th width='200'></th>
 								<th width='50'>Id</th>
@@ -195,13 +193,18 @@
 
 <style>
 	.bg-card-header {
-		background-color: #216076;
+		background-color: #28A2EF;
 	}
 	.bg-buttons {
-		background-color: #8FC1E4;
+		background-color: #FF6FBA;
 	}
 	.bg-table-header {
 		background-color: #749988;
 	}
+	.bg-card-body {
+		background-color: #FAF9F8;
+	}
+
+	
 
 </style>

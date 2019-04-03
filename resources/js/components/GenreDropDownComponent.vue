@@ -1,5 +1,5 @@
 <template>
-	<select class="btn btn-warning" v-model="genreId" @change="selectGenre(genreId)">
+	<select class="btn genreBgColor" v-model="genreId" @change="selectGenre(genreId)">
 		<option v-for="(item, index) in genreResults" :value="item.id">{{ item.name }}</option>
 	</select>
 </template>
@@ -31,3 +31,9 @@
 	}
 
 </script>
+
+<style type="text/css">
+	.genreBgColor {
+		background-color: #F1F1EF;
+	}
+</style>

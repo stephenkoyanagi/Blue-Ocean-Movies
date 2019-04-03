@@ -46,8 +46,8 @@
 
               <div class="row">
                   <div class="col bg-primary text-center">
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#search-movies">Search Movies</button>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upcoming-movies">Upcoming Movies</button>
+                      <button type="button" class="btn bg-buttons" data-toggle="modal" data-target="#search-movies">Search Movies</button>
+                      <button type="button" class="btn bg-buttons" data-toggle="modal" data-target="#upcoming-movies">Upcoming Movies</button>
                   </div>
               </div>
 

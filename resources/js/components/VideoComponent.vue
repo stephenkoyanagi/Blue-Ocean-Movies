@@ -1,12 +1,12 @@
 <template>
-	<div style="background-color: #A0514D;">
+	<div>
 		<div class="row">
-			<div id="app" v-cloak>
-  				<h2 class= "col-md-6 offset-md-3">{{ this.movieTitle }}</h2>
+			<div class="text-center" id="app" v-cloak>
+  				<h2 class="col-md-6 offset-md-3">{{ this.movieTitle }}</h2>
   				<div class="col-md-6 offset-md-3" v-for="video in videosResults">
     				<iframe id="ytplayer" type="text/html" width="640" height="360"
-    				:src="'https://www.youtube.com/embed/'+video.key+'?autoplay=0&origin=http://example.com'"
-  					frameborder="0"></iframe> <hr/>
+    				:src="'https://www.youtube.com/embed/'+video.key+'?autoplay=0'"
+  					frameborder="0"></iframe>
   				</div>
 			</div>
 
