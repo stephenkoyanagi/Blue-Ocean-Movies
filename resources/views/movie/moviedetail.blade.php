@@ -9,7 +9,7 @@
           
             <!-- Modal body -->
             <div class="modal-body" style="background-color: #4C525C;">
-              <movie-detail-component movie-id= "{{ $id }}" movie-title= "{{ $name }}"></movie-detail-component>
+              <movie-detail-component movie-id= "{{ $id }}" movie-title= "{{ $name }}"></movie-detail-component>              
             </div>
       
             <!-- Modal footer -->

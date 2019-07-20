@@ -24,7 +24,9 @@
 								<th>ID</th>
 								<th>Name</th>
 							</thead>
-							<tbody v-for="(item, index) in genreResults">
+							<tbody
+								v-for="item in genreResults"
+								v-bind:key="item">
 								<tr>
 									<td> {{ index }} </td>
 									<td> {{ item.id }} </td>

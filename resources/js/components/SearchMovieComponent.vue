@@ -39,7 +39,9 @@
 								<th width="50">Popularity</th>
 								<th width="100">Release Date</th>
 							</thead>
-							<tbody v-for="(item, index) in movieSearchResults.results">
+							<tbody
+								v-for="item in movieSearchResults.results"
+								v-bind:key="item">
 								<tr>
 									<td> <img :src="getPic(item.poster_path)"></td>
 									<td> <a :href="generateHref(item.id, item.title)">{{ item.id }}</a></td>

@@ -133,7 +133,7 @@
   </div>
 
       <div class="content">
-          <div class="row">
+          <div class="row h-25">
               @include('genre.genre')
               @include('country.country')
               @include('language.language')

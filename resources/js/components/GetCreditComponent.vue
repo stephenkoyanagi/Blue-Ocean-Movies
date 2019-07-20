@@ -15,10 +15,12 @@
 							<th width='50'>Character</th>							
 							<th width="300">Name</th>								
 						</thead>
-						<tbody v-for="(item, index) in movieCast">
+						<tbody
+							v-for="item in movieCast"
+							v-bind:key="item">
 							<tr>
 								<td> <img :src="getPic(item.profile_path)"></td>
-								<td> <a :href="generateHref(item.id, item.title)">{{ item.id }}</a></td>
+								<td> <a :href="generateHref(item.id)">{{ item.id }}</a></td>
 								<td> {{ item.character}} </td>
 								<td> {{ item.name }} </td>								
 							</tr>
@@ -93,8 +95,9 @@
 					return "Male";
 			},
 
-			generateHref(id, name) {
-				return this.href + id;
+			generateHref(id) {
+				/*return "person/" + id;*/
+				return "{{ route('person.show',)}}"
 			}
 		}
 	}

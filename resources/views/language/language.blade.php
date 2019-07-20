@@ -5,13 +5,13 @@
 
 <div class="col-lg-4 col-lg-offset">
 	
-	<div class="card h-100 overflow-auto">
+	<div class="card overflow-auto h-50">
 		<div class="card-header bg-danger">
 			<h4 class="card-title text-center">Language</h4>
 		</div>
 		<div class="card-body">
-			<div class="table-responsive">
-				<table class="table table-bordered table-striped table-danger cellspacing='0'">
+			<div>
+				<table class="table table-bordered table-hover table-striped table-danger cellspacing='0'">
 					<thead class="thead-dark">
 						<tr>
 							<th>#</th>      

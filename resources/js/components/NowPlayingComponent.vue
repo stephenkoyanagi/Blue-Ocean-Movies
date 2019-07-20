@@ -33,7 +33,9 @@
 								<th>Voting Average</th>
 								<th>Vote Count</th>
 							</thead>
-							<tbody v-for="(item, index) in nowPlayingResults.results">
+							<tbody
+								v-for="item in nowPlayingResults.results"
+								v-bind:key="item">
 								<tr>
 									<td> {{ index }}</td>
 									<td> {{ item.id }} </td>

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Genre;
 use App\Country;
 use App\Language;
+use App\Movie;
 
 class User extends Authenticatable
 {
@@ -16,17 +17,22 @@ class User extends Authenticatable
 
     public function genres()
     {
-        return $this->hasMany('\App\Genre');
+        return $this->hasMany(Genre::class);
     }
 
     public function countries()
     {
-        return $this->hasMany('\App\Country');
+        return $this->hasMany(Country::class);
     }
 
     public function languages()
     {
-        return $this->hasMany('\App\Language');
+        return $this->hasMany(Language::class);
+    }
+
+    public function movies()
+    {
+        return $this->hasMany(Movie::class);
     }
 
     /**

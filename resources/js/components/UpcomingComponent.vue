@@ -8,10 +8,7 @@
 					<label for="page">Page:</label>
 					<input type="text" name="page" v-model="page">
 					<label v-if="totalResults > 0">of {{ this.totalPageCount }}</label>
-					<button type="button" class="btn bg-buttons" @click="getUpcoming()">Get Upcoming</button>
-
-
-		
+					<button type="button" class="btn bg-buttons" @click="getUpcoming()">Get Upcoming</button>		
 				</div>
 			</form>
 		</div>
@@ -24,32 +21,27 @@
 	            </div>
 	            <div class="card-body justify-content-center bg-card-body">
 	            	<div class="btn-group mb-4 mt-2 text-center">
-	            		<button type="button" class="btn bg-buttons" @click="previousPage()">Prev. Page</button>
-	            		<button type="button" class="btn bg-buttons" @click="nextPage()">Next Page</button>
+	            		<!-- <button type="button" class="btn bg-buttons" @click="previousPage()">Prev. Page</button> -->
+	            		<!-- <button type="button" class="btn bg-buttons" @click="nextPage()">Next Page</button> -->
 	            	</div>
 	            	<div class="table-responsive">
-		            	<table class="table table-striped table-dark" style="background-color: #28A2EF;" id=" movieData">	
+		            	<table class="table table-striped table-dark" style="background-color: #28A2EF;" id="movieData">	
 							<thead class="">								
 								<th width='200'></th>
 								<th width='50'>Id</th>								
 								<th width="150">Title</th>
 								<th width="300">Overview</th>
-								<th width="100">Release Date</th>
-								<!-- <th>Genre</th> -->
-								<th width="50">Popularity</th>
-								<th width="50">Voting Average</th>
-								<th width="50">Vote Count</th>
+								<th width="100">Release Date</th>								
 							</thead>
-							<tbody v-for="(item, index) in upcomingResults.results">
+							<tbody
+								v-for="item in upcomingResults.results"
+								v-bind:key="item">
 								<tr>																		
 									<td> <img :src="getPic(item.poster_path)"></td>
 									<td> <a :href="generateHref(item.id, item.title)">{{ item.id }}</a></td>
 									<td> {{ item.title }} </td>
 									<td> {{ item.overview }} </td>
-									<td> {{ item.release_date }} </td>
-									<td> {{ item.popularity }} </td>
-									<td> {{ item.vote_average }} </td>									
-									<td> {{ item.vote_count }} </td>
+									<td> {{ item.release_date }} </td>									
 								</tr>
 							</tbody>
 						</table>

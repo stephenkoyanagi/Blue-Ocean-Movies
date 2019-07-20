@@ -31,7 +31,9 @@
 								<th>Id</th>
 								<th>Name</th>
 							</thead >
-							<tbody v-for="(item, index) in peopleSearchResults.results">
+							<tbody 
+								v-for="item in peopleSearchResults.results"
+								v-bind:key="item">
 								<tr>
 									<td> {{ index }} </td>
 									<td> <img :src="getPic(item.profile_path)"></td>
@@ -47,7 +49,9 @@
 												<th>Overview</th>
 												<th>Release Date</th>
 											</thead>
-											<tbody v-for="(item, index) in item.known_for">
+											<tbody
+												v-for="item in item.known_for"
+												v-bind:key="item">
 												<tr>
 													<td> <img :src="getPic(item.poster_path)"></td>
 													<td> {{ item.id }}</td>

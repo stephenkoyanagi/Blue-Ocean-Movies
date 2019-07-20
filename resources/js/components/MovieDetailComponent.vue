@@ -21,11 +21,14 @@
 								<th width="100">Tag Line</th>
 								<th width="50">Revenue</th>
 								<th width="50">Budget</th>
+								<th width="50"></th>
 							</thead>
 							<tbody>
 								<tr>
 									<td> {{ movieDetailResults.overview }}</td>
-									<table v-for="(item, index) in genres">
+									<table
+										v-for="item in genres"
+										v-bind:key="item">
 										<tr>
 											<td> {{ item.name }}</td>
 										</tr>
@@ -70,10 +73,6 @@
 		},
 		mounted() {
             console.log('Component mounted.');
-            console.log(this.movie-id);
-            console.log(this.movie-title);
-            this.movieId = this.movie-id;
-
         },
         created () {
 		    // fetch the data when the view is created and the data is

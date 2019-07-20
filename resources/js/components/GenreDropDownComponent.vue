@@ -1,6 +1,11 @@
 <template>
 	<select class="btn genreBgColor" v-model="genreId" @change="selectGenre(genreId)">
-		<option v-for="(item, index) in genreResults" :value="item.id">{{ item.name }}</option>
+		<option
+			v-for="item in genreResults"
+			v-bind:key="item"
+			:value="item.id">
+			{{ item.name }}
+		</option>
 	</select>
 </template>
 

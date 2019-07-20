@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="text-center" id="app" v-cloak>
   				<h2 class="col-md-6 offset-md-3">{{ this.movieTitle }}</h2>
-  				<div class="col-md-6 offset-md-3" v-for="video in videosResults">
+  				<div class="col-md-6 offset-md-3" v-for="video in videosResults" v-bind:key="video">
     				<iframe id="ytplayer" type="text/html" width="640" height="360"
     				:src="'https://www.youtube.com/embed/'+video.key+'?autoplay=0'"
   					frameborder="0"></iframe>

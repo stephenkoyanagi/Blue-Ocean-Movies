@@ -1,6 +1,12 @@
 <template>
 	<select class="btn languageBgColor" v-model="code" @change="selectLanguage(code)">
-		<option v-for="(item, index) in languageResults" :value="item.code">{{ item.name }}</option>
+		<option
+			v-for="item in languageResults"
+			v-bind:key="item"
+			:value="item.code"			
+			>
+			{{ item.name }}
+		</option>
 	</select>
 </template>
 

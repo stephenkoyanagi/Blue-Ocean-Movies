@@ -12,7 +12,9 @@
 								<th>Code</th>
 								<th>Name</th>
 							</thead>
-							<tbody v-for="(item, index) in languageResults">
+							<tbody
+								v-for="item in languageResults"
+								v-bind:key="item">
 								<tr>
 									<td> {{ item.iso_639_1 }} </td>
 									<td> {{ item.english_name }} </td>
